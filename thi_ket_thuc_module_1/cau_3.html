@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Câu 3</title>
+</head>
+<body>
+<script>
+    function findDay(x) {
+        if (x.indexOf('/') === -1) {
+            alert("Sai định dạng tháng/năm (MM/yyyy)");
+            return;
+        }
+
+        let monthYear = x.split('/');
+        if (monthYear.length !== 2 || isNaN(monthYear[0]) || isNaN(monthYear[1]) || monthYear[0] === "" || monthYear[1] === "") {
+            alert("Nhập tháng, năm sai");
+            return;
+        }
+
+        let month = parseInt(monthYear[0]);
+        let year = parseInt(monthYear[1]);
+
+        if (month < 1 || month > 12) {
+            alert("Tháng không hợp lệ");
+            return;
+        }
+
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                document.write(x + " : " + 31 + "<br>");
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                document.write(x + " : " + 30 + "<br>");
+                break;
+            case 2:
+                if ((year % 4 === 0 && year % 100 !== 0)) {
+                    document.write(x + " : " + 29 + "<br>");
+                } else {
+                    document.write(x + " : " + 28 + "<br>");
+                }
+                break;
+            default:
+                alert("Sai tháng!");
+                break;
+        }
+    }
+
+    findDay("01/2020");
+    findDay("02/2020");
+    findDay("02/2021");
+</script>
+</body>
+</html>
